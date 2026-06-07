@@ -3,92 +3,123 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>AI Glue 業務ボード</title>
+<title>AI Glue フロー設計</title>
 <style>
-:root{--ink:#17201c;--muted:#62716a;--line:#d9e2dd;--bg:#f5f7f4;--panel:#fff;--soft:#e8f2ee;--accent:#1c6b5a;--accent-strong:#155143;--warn:#a66a18;--red:#963232;--blue:#285f8f;--shadow:0 14px 34px rgba(24,35,30,.1)}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,"Noto Sans JP",system-ui,-apple-system,"Segoe UI",sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}p,h1,h2,h3{margin-top:0}p{color:var(--muted);line-height:1.65}.app{max-width:1220px;margin:auto;padding:18px}.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:14px}.brand{display:flex;align-items:center;gap:10px;font-weight:900}.logo{display:grid;width:34px;height:34px;place-items:center;border-radius:8px;background:var(--accent);color:#fff}.top-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.select,.btn{min-height:38px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--ink);padding:0 10px}.btn{border-color:var(--accent);background:var(--accent);color:#fff;font-weight:800}.btn.secondary{background:#fff;color:var(--accent-strong)}.btn.red{border-color:var(--red);background:#fff;color:var(--red)}.layout{display:grid;grid-template-columns:240px minmax(0,1fr);gap:14px}.side,.panel,.task-detail{border:1px solid var(--line);border-radius:8px;background:var(--panel);box-shadow:var(--shadow)}.side{padding:14px;position:sticky;top:12px;align-self:start}.side h2{font-size:15px;margin-bottom:10px}.navbtn{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:40px;margin-bottom:7px;border:1px solid var(--line);border-radius:8px;background:#fbfcfb;color:var(--muted);padding:0 10px;font-weight:800;text-align:left}.navbtn.active{border-color:var(--accent);background:var(--soft);color:var(--accent-strong)}.main{display:grid;gap:14px}.headline{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}.headline h1{margin-bottom:4px;font-size:clamp(24px,4vw,38px);line-height:1.12}.headline p{margin-bottom:0}.summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.metric{min-height:94px;padding:14px;border:1px solid var(--line);border-radius:8px;background:#fff}.metric span{display:block;color:var(--muted);font-size:12px;font-weight:900}.metric strong{display:block;margin-top:8px;font-size:30px}.metric small{display:block;margin-top:4px;color:var(--muted)}.work{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:14px}.panel{padding:16px}.panel-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}.panel-head h2{margin-bottom:0;font-size:20px}.task-list{display:grid;gap:8px}.task{display:grid;grid-template-columns:92px minmax(0,1fr) 104px;gap:10px;align-items:center;min-height:72px;padding:10px;border:1px solid var(--line);border-radius:8px;background:#fbfcfb;text-align:left}.task.active{border-color:var(--accent);background:var(--soft)}.task strong{display:block;margin-bottom:4px}.task small{display:block;color:var(--muted);line-height:1.45}.badge{display:inline-flex;align-items:center;justify-content:center;min-height:26px;border-radius:999px;padding:0 9px;background:var(--soft);color:var(--accent-strong);font-size:12px;font-weight:900}.badge.warn{background:#fff1dc;color:var(--warn)}.badge.red{background:#f8dfdf;color:var(--red)}.badge.blue{background:#e3eef8;color:var(--blue)}.task-detail{padding:16px}.detail-title{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:10px}.detail-title h2{font-size:20px;margin-bottom:3px}.detail-block{padding:12px;border:1px solid var(--line);border-radius:8px;background:#fbfcfb;margin-top:10px}.detail-block h3{font-size:14px;margin-bottom:6px}.detail-block ul{margin:0;padding-left:18px;color:var(--muted);line-height:1.55}.actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}.actions .btn:first-child{grid-column:1/-1}.section-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.drop{display:grid;gap:8px;min-height:130px;padding:16px;border:1.5px dashed #9aada2;border-radius:8px;background:var(--soft)}.detected{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:10px}.detected span{min-height:32px;border:1px solid var(--line);border-radius:999px;background:#fff;padding:6px 9px;color:var(--muted);font-size:12px;font-weight:800;text-align:center}.rules{display:grid;gap:9px}.rule{display:grid;grid-template-columns:minmax(0,1fr) 92px;gap:10px;align-items:center;padding:12px;border:1px solid var(--line);border-radius:8px;background:#fbfcfb}.rule strong{display:block}.rule small{color:var(--muted);line-height:1.45}.log{display:grid;gap:7px}.log-row{display:grid;grid-template-columns:94px minmax(0,1fr);gap:8px;padding:9px;border-bottom:1px solid var(--line);font-size:13px}.log-row:last-child{border-bottom:0}.log-row span{color:var(--muted);font-weight:800}.notice{padding:12px;border:1px solid #ead7b8;border-radius:8px;background:#fff8ed;color:#6f4b16;font-size:13px;line-height:1.55}.hidden{display:none}@media(max-width:980px){.layout,.work,.section-grid,.summary{grid-template-columns:1fr}.side{position:static}.headline{align-items:flex-start;flex-direction:column}.task{grid-template-columns:1fr}.actions{grid-template-columns:1fr}.detected{grid-template-columns:1fr 1fr}}@media(max-width:640px){.app{padding:12px}.topbar{align-items:flex-start;flex-direction:column}.top-actions{width:100%}.select,.btn{width:100%}.panel,.side,.task-detail{padding:12px}.metric strong{font-size:26px}}
+:root{--ink:#17201c;--muted:#65736d;--line:#d9e2dd;--bg:#f5f7f4;--panel:#fff;--soft:#e8f2ee;--accent:#1c6b5a;--accent-strong:#155143;--warn:#a66a18;--red:#963232;--blue:#285f8f;--violet:#6950a1;--shadow:0 14px 34px rgba(24,35,30,.1)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,"Noto Sans JP",system-ui,-apple-system,"Segoe UI",sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}p,h1,h2,h3{margin-top:0}p{color:var(--muted);line-height:1.6}.app{max-width:1260px;margin:auto;padding:18px}.topbar{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:14px}.brand{display:flex;align-items:center;gap:10px;font-weight:900}.logo{display:grid;width:34px;height:34px;place-items:center;border-radius:8px;background:var(--accent);color:#fff}.top-actions{display:flex;gap:8px;flex-wrap:wrap}.btn{min-height:38px;border:1px solid var(--accent);border-radius:8px;background:var(--accent);color:#fff;padding:0 12px;font-weight:800}.btn.secondary{background:#fff;color:var(--accent-strong)}.btn.warn{border-color:var(--warn);background:#fff8ed;color:var(--warn)}.btn.red{border-color:var(--red);background:#fff;color:var(--red)}.workspace{display:grid;grid-template-columns:280px minmax(0,1fr);gap:14px}.palette,.panel,.canvas,.inspector{border:1px solid var(--line);border-radius:8px;background:var(--panel);box-shadow:var(--shadow)}.palette{position:sticky;top:12px;align-self:start;padding:14px}.palette h2,.panel h2,.inspector h2{margin-bottom:6px;font-size:20px}.palette p,.panel p,.inspector p{font-size:13px}.palette-group{margin-top:14px}.palette-group h3{margin-bottom:8px;color:var(--muted);font-size:13px}.tool{display:grid;grid-template-columns:34px minmax(0,1fr) 30px;gap:9px;align-items:center;width:100%;min-height:58px;margin-bottom:8px;border:1px solid var(--line);border-radius:8px;background:#fbfcfb;padding:9px;text-align:left}.tool:hover,.tool:focus-visible{border-color:var(--accent);outline:0}.tool-icon{display:grid;width:34px;height:34px;place-items:center;border-radius:8px;color:#fff;font-weight:900}.tool strong{display:block}.tool small{display:block;color:var(--muted);line-height:1.35}.tool-add{display:grid;width:30px;height:30px;place-items:center;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--accent);font-weight:900}.main{display:grid;gap:14px}.headline{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}.headline h1{margin-bottom:4px;font-size:clamp(24px,4vw,38px);line-height:1.12}.headline p{margin-bottom:0}.summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.metric{min-height:90px;padding:14px;border:1px solid var(--line);border-radius:8px;background:#fff}.metric span{display:block;color:var(--muted);font-size:12px;font-weight:900}.metric strong{display:block;margin-top:8px;font-size:28px}.flow-workbench{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:14px}.canvas{min-height:520px;padding:16px}.canvas-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}.canvas-head h2{margin-bottom:0}.drop-zone{min-height:380px;border:1.5px dashed #9aada2;border-radius:8px;background:linear-gradient(180deg,#fbfcfb,#f4f8f6);padding:14px;overflow:auto}.flow-track{display:flex;align-items:stretch;gap:10px;min-width:max-content}.node{width:222px;min-height:202px;border:1px solid var(--line);border-radius:8px;background:#fff;padding:12px;text-align:left}.node.active{border-color:var(--accent);box-shadow:0 0 0 3px rgba(28,107,90,.14)}.node-head{display:flex;align-items:center;gap:8px;margin-bottom:10px}.node-head .tool-icon{width:32px;height:32px}.node h3{margin-bottom:2px;font-size:17px}.node small{color:var(--muted)}.folder{min-height:44px;margin-top:10px;padding:9px;border:1px solid var(--line);border-radius:8px;background:#fbfcfb;color:var(--muted);font-size:12px;line-height:1.4;word-break:break-all}.node-actions{display:flex;gap:6px;margin-top:10px}.mini{min-height:30px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--muted);padding:0 8px;font-weight:800}.connector{display:grid;align-content:center;justify-items:center;width:74px;min-width:74px;color:var(--muted);font-size:12px}.connector-line{width:100%;height:2px;background:var(--line);position:relative}.connector-line:after{content:"";position:absolute;right:-1px;top:-4px;border-left:8px solid var(--line);border-top:5px solid transparent;border-bottom:5px solid transparent}.confidence{margin-top:8px;border-radius:999px;background:var(--soft);color:var(--accent-strong);padding:4px 8px;font-weight:900}.inspector{padding:14px}.field{display:grid;gap:6px;margin-top:10px}.field span{color:var(--muted);font-size:13px;font-weight:900}.field input,.field select,.field textarea{width:100%;min-height:38px;border:1px solid var(--line);border-radius:8px;background:#fbfcfb;color:var(--ink);padding:0 10px}.field textarea{min-height:80px;padding:10px;resize:vertical}.panel{padding:16px}.proposal-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.proposal,.rule,.log-row{border:1px solid var(--line);border-radius:8px;background:#fbfcfb}.proposal{padding:12px}.proposal-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px}.badge{display:inline-flex;align-items:center;justify-content:center;min-height:24px;border-radius:999px;background:var(--soft);color:var(--accent-strong);padding:0 8px;font-size:12px;font-weight:900}.badge.warn{background:#fff1dc;color:var(--warn)}.badge.blue{background:#e3eef8;color:var(--blue)}.badge.violet{background:#eee9fb;color:var(--violet)}.proposal p{font-size:13px;margin-bottom:10px}.rule-list,.log{display:grid;gap:8px}.rule{display:grid;grid-template-columns:minmax(0,1fr) 84px;gap:10px;align-items:center;padding:12px}.rule small,.log-row small{color:var(--muted)}.log-row{display:grid;grid-template-columns:80px minmax(0,1fr);gap:8px;padding:10px;font-size:13px}.notice{padding:12px;border:1px solid #ead7b8;border-radius:8px;background:#fff8ed;color:#6f4b16;font-size:13px;line-height:1.55}.empty{display:grid;min-height:240px;place-items:center;color:var(--muted);text-align:center}@media(max-width:1060px){.workspace,.flow-workbench,.proposal-grid,.summary{grid-template-columns:1fr}.palette{position:static}.flow-track{flex-direction:column;min-width:0}.node{width:100%}.connector{width:100%;min-width:0;height:36px}.connector-line{width:2px;height:100%}.connector-line:after{right:-4px;top:auto;bottom:-1px;border-top:8px solid var(--line);border-left:5px solid transparent;border-right:5px solid transparent;border-bottom:0}.headline{align-items:flex-start;flex-direction:column}}@media(max-width:640px){.app{padding:12px}.topbar{align-items:flex-start;flex-direction:column}.top-actions,.btn{width:100%}.canvas,.panel,.palette,.inspector{padding:12px}.summary{gap:8px}.metric strong{font-size:24px}}
 </style>
 </head>
 <body>
 <div class="app">
   <header class="topbar">
-    <div class="brand"><span class="logo">AI</span><span>AI Glue 業務ボード</span></div>
+    <div class="brand"><span class="logo">AI</span><span>AI Glue フロー設計</span></div>
     <div class="top-actions">
-      <select id="role" class="select" onchange="changeRole()">
-        <option value="受注担当">受注担当</option>
-        <option value="経理担当">経理担当</option>
-        <option value="倉庫担当">倉庫担当</option>
-        <option value="管理者">管理者</option>
-      </select>
-      <button class="btn secondary" onclick="loadSample()">今日のサンプルを再読込</button>
+      <button class="btn secondary" onclick="loadTemplate()">標準フローを読み込む</button>
+      <button class="btn warn" onclick="resetFlow()">初期化</button>
     </div>
   </header>
-  <div class="layout">
-    <aside class="side">
-      <h2>自分の業務</h2>
-      <button class="navbtn active" data-section="board" onclick="showSection('board')">今日の確認 <span id="navCount">7</span></button>
-      <button class="navbtn" data-section="import" onclick="showSection('import')">Excel取込 <span>CSV</span></button>
-      <button class="navbtn" data-section="learning" onclick="showSection('learning')">学習候補 <span id="learnCount">3</span></button>
-      <button class="navbtn" data-section="audit" onclick="showSection('audit')">操作ログ <span>監査</span></button>
-      <div class="notice" style="margin-top:12px">AIは勝手に送信、承認、Excel上書きをしません。現場メンバーが確認したものだけ次工程へ進みます。</div>
+  <div class="workspace">
+    <aside class="palette">
+      <h2>業務要素</h2>
+      <p>左の要素を右のキャンバスへドラッグします。スマホでは「＋」で追加できます。</p>
+      <div id="paletteList"></div>
+      <div class="notice" style="margin-top:12px">各要素に共有フォルダを指定すると、AIがフォルダ間の関係を学習し、自動化候補を出します。</div>
     </aside>
     <main class="main">
       <section class="headline">
-        <div><h1 id="headlineTitle">今日、確認が必要な業務</h1><p id="headlineText">ExcelやメールからAIが整理した下書きを、担当者が確認して進める画面です。</p></div>
-        <button class="btn" onclick="completeSelected()">選択中の下書きを承認</button>
+        <div>
+          <h1>業務フローをGUIで編集する</h1>
+          <p>受注、見積、発注、納品などを並べ、フォルダを紐づけると、AIがファイル移動・照合・下書き作成の自動化を提案します。</p>
+        </div>
+        <button class="btn" onclick="implementTopProposal()">最上位提案を試験実装</button>
       </section>
       <section class="summary">
-        <div class="metric"><span>確認待ち</span><strong id="mCheck">4</strong><small>不足情報の確認</small></div>
-        <div class="metric"><span>承認待ち</span><strong id="mApprove">2</strong><small>人間の確定操作待ち</small></div>
-        <div class="metric"><span>今日の締切</span><strong id="mDue">2</strong><small>15:00までに処理</small></div>
-        <div class="metric"><span>AI学習候補</span><strong id="mLearn">3</strong><small>承認後にルール化</small></div>
+        <div class="metric"><span>フロー要素</span><strong id="mSteps">0</strong></div>
+        <div class="metric"><span>フォルダ指定</span><strong id="mFolders">0</strong></div>
+        <div class="metric"><span>AI関連判定</span><strong id="mLinks">0</strong></div>
+        <div class="metric"><span>試験実装</span><strong id="mRules">0</strong></div>
       </section>
-      <section id="board" class="work">
-        <div class="panel"><div class="panel-head"><h2>AIが整理した業務キュー</h2><span class="badge blue">Excel同期: 手動</span></div><div class="task-list" id="taskList"></div></div>
-        <aside class="task-detail" id="detail"></aside>
+      <section class="flow-workbench">
+        <div class="canvas">
+          <div class="canvas-head">
+            <h2>フローキャンバス</h2>
+            <span class="badge blue">ドラッグ&ドロップ編集</span>
+          </div>
+          <div id="dropZone" class="drop-zone" ondragover="allowDrop(event)" ondrop="dropOnCanvas(event)">
+            <div id="flowTrack" class="flow-track"></div>
+          </div>
+        </div>
+        <aside class="inspector" id="inspector"></aside>
       </section>
-      <section id="import" class="section-grid hidden">
-        <div class="panel"><div class="panel-head"><h2>いつものExcel/CSVを取り込む</h2><span class="badge">外部送信なし</span></div><label class="drop"><strong>受注一覧、請求一覧、在庫表のCSVを選択</strong><input id="file" type="file" accept=".csv,.txt"><small id="fileNote">未選択。選択すると先頭行だけをブラウザ内で確認します。</small></label><div class="detected" id="detected"></div></div>
-        <div class="panel"><h2>AIが見るポイント</h2><div class="detail-block"><h3>列の意味を推定</h3><p>顧客名、商品、数量、金額、納期、ステータスなどを業務項目に対応付けます。</p></div><div class="detail-block"><h3>不足を先に出す</h3><p>承認前に必要な情報が足りない場合、担当者に確認タスクとして戻します。</p></div><div class="detail-block"><h3>正本は残す</h3><p>元のExcelや会計ソフトは上書きせず、確認済みCSVや下書きだけを作ります。</p></div></div>
+      <section class="panel">
+        <div class="canvas-head">
+          <h2>AI自動化提案</h2>
+          <span class="badge violet">フォルダ関連を学習</span>
+        </div>
+        <div id="proposals" class="proposal-grid"></div>
       </section>
-      <section id="learning" class="section-grid hidden">
-        <div class="panel"><div class="panel-head"><h2>社内ルールの候補</h2><span class="badge warn">承認前</span></div><div class="rules" id="rulesList"></div></div>
-        <div class="panel"><h2>学習の考え方</h2><p>AIは一度の判断でルールを確定しません。同じ修正や差戻しが繰り返されたものだけ候補にし、現場メンバーまたは管理者が承認したら正式ルールにします。</p><div class="notice">例: 「1万円以上の値引きは課長確認」「欠品時は代替品を添付」「法人顧客は締め支払い条件を確認」。</div></div>
+      <section class="flow-workbench">
+        <div class="panel">
+          <h2>試験実装された自動化</h2>
+          <div id="rules" class="rule-list"></div>
+        </div>
+        <div class="panel">
+          <h2>学習・操作ログ</h2>
+          <div id="log" class="log"></div>
+        </div>
       </section>
-      <section id="audit" class="panel hidden"><div class="panel-head"><h2>操作ログ</h2><span class="badge">監査用</span></div><div class="log" id="log"></div></section>
     </main>
   </div>
 </div>
 <script>
 const $=id=>document.getElementById(id);
-const baseTasks=[
- {id:1,role:['受注担当','管理者'],status:'確認待ち',title:'受注CSV 12件の納期が空欄',source:'受注一覧_今月.csv',due:'本日 11:00',ai:'顧客への返信前に納期確認が必要です。過去の同商品では通常3営業日でした。',missing:['納期','代替品可否'],draft:'お見積りありがとうございます。納期確認後、本日中に折り返します。'},
- {id:2,role:['経理担当','管理者'],status:'承認待ち',title:'請求書作成前の金額差異 3件',source:'請求一覧.xlsx',due:'本日 15:00',ai:'受注金額と請求予定額が一致しない行を検出しました。値引きメモの反映漏れが疑われます。',missing:['値引き承認者'],draft:'差異3件を確認用CSVにまとめました。承認後に請求書作成へ進めます。'},
- {id:3,role:['倉庫担当','受注担当','管理者'],status:'確認待ち',title:'在庫不足になりそうな商品 5件',source:'在庫表.csv',due:'本日 14:00',ai:'受注数が現在庫を上回る商品があります。代替品候補と仕入先確認が必要です。',missing:['仕入先回答','代替品'],draft:'欠品見込みの商品と代替候補を一覧にしました。'},
- {id:4,role:['受注担当','管理者'],status:'差戻し',title:'顧客返信文の敬称ルール確認',source:'メール下書き',due:'明日 10:00',ai:'法人顧客に対して個人名のみの宛名になっています。会社名と部署名を確認してください。',missing:['部署名'],draft:'株式会社〇〇 営業部 △△様。'},
- {id:5,role:['経理担当','管理者'],status:'処理中',title:'月次報告の売上集計を作成中',source:'売上一覧.xlsx',due:'明日 17:00',ai:'部門別、担当者別、商品カテゴリ別の集計を作っています。完了後に確認待ちへ移します。',missing:[],draft:'月次報告の下書きを準備中です。'},
- {id:6,role:['管理者'],status:'承認待ち',title:'新しい社内ルール候補 3件',source:'修正履歴',due:'今週中',ai:'同じ差戻しが複数回出ているため、AIの確認ルールとして登録できます。',missing:['管理者承認'],draft:'承認されたルールだけ次回以降の確認に使います。'}
+const stepTypes=[
+  {type:'受注',group:'営業',icon:'受',color:'#1c6b5a',folder:'\\\\共有\\\\営業\\\\02_受注',desc:'注文書、受注CSV、顧客依頼'},
+  {type:'見積',group:'営業',icon:'見',color:'#285f8f',folder:'\\\\共有\\\\営業\\\\01_見積',desc:'見積書、見積依頼、承認前資料'},
+  {type:'発注',group:'調達',icon:'発',color:'#6950a1',folder:'\\\\共有\\\\調達\\\\03_発注',desc:'仕入先発注、発注書、回答待ち'},
+  {type:'納品',group:'物流',icon:'納',color:'#a66a18',folder:'\\\\共有\\\\物流\\\\04_納品',desc:'納品書、出荷指示、配送状況'},
+  {type:'在庫確認',group:'物流',icon:'在',color:'#4f6f35',folder:'\\\\共有\\\\物流\\\\在庫',desc:'在庫表、欠品、代替品'},
+  {type:'請求',group:'経理',icon:'請',color:'#963232',folder:'\\\\共有\\\\経理\\\\05_請求',desc:'請求書、請求予定、金額照合'},
+  {type:'入金',group:'経理',icon:'入',color:'#59616d',folder:'\\\\共有\\\\経理\\\\06_入金',desc:'入金消込、未入金確認'},
+  {type:'承認',group:'管理',icon:'承',color:'#8a5a21',folder:'\\\\共有\\\\承認\\\\確認待ち',desc:'人間承認、差戻し、監査'},
+  {type:'顧客連絡',group:'連絡',icon:'連',color:'#317083',folder:'\\\\共有\\\\連絡\\\\顧客対応',desc:'メール、LINE、電話メモ'},
+  {type:'月次報告',group:'管理',icon:'月',color:'#5060a8',folder:'\\\\共有\\\\管理\\\\月次報告',desc:'集計、経営会議資料'}
 ];
-const learningRules=[
- {title:'1万円以上の値引きは課長確認',desc:'請求差異の差戻しから3回検出。承認後、請求前チェックに追加します。'},
- {title:'欠品時は代替品と納期をセットで確認',desc:'在庫不足時の聞き返しを標準化します。'},
- {title:'法人顧客の宛名は会社名、部署、氏名',desc:'メール下書きの敬称差戻しを減らします。'}
-];
-let selectedId=1;let logRows=[['09:12','受注CSVから確認待ち12件を作成'],['09:18','請求金額差異3件を承認待ちへ移動'],['09:31','在庫不足5件を倉庫担当へ割当']];
-function visibleTasks(){const role=$('role').value;return baseTasks.filter(t=>t.role.includes(role))}
-function statusClass(status){return status==='確認待ち'?'warn':status==='承認待ち'?'red':status==='処理中'?'blue':''}
-function renderTasks(){const tasks=visibleTasks();if(!tasks.some(t=>t.id===selectedId)&&tasks[0])selectedId=tasks[0].id;$('taskList').innerHTML=tasks.map(t=>`<button class="task ${t.id===selectedId?'active':''}" onclick="selectTask(${t.id})"><span class="badge ${statusClass(t.status)}">${t.status}</span><span><strong>${t.title}</strong><small>${t.source} / 期限 ${t.due}</small></span><small>${t.missing.length?`不足 ${t.missing.length}`:'下書きあり'}</small></button>`).join('')||'<p>この担当の確認待ちはありません。</p>';renderDetail();renderMetrics()}
-function renderDetail(){const task=baseTasks.find(x=>x.id===selectedId)||visibleTasks()[0];if(!task){$('detail').innerHTML='<p>この担当の確認待ちはありません。</p>';return}$('detail').innerHTML=`<div class="detail-title"><div><h2>${task.title}</h2><p>${task.source} / ${task.due}</p></div><span class="badge ${statusClass(task.status)}">${task.status}</span></div><div class="detail-block"><h3>AIが見つけたこと</h3><p>${task.ai}</p></div><div class="detail-block"><h3>不足している確認</h3>${task.missing.length?`<ul>${task.missing.map(x=>`<li>${x}</li>`).join('')}</ul>`:'<p>不足情報はありません。</p>'}</div><div class="detail-block"><h3>AI下書き</h3><p>${task.draft}</p></div><div class="actions"><button class="btn" onclick="completeSelected()">確認して次へ進める</button><button class="btn secondary" onclick="requestInfo()">担当者に確認</button><button class="btn red" onclick="rejectDraft()">差戻し</button></div>`}
-function renderMetrics(){const tasks=visibleTasks();$('mCheck').textContent=tasks.filter(t=>t.status==='確認待ち').length;$('mApprove').textContent=tasks.filter(t=>t.status==='承認待ち').length;$('mDue').textContent=tasks.filter(t=>t.due.includes('本日')).length;$('mLearn').textContent=learningRules.length;$('navCount').textContent=tasks.length;$('learnCount').textContent=learningRules.length}
-function renderRules(){$('rulesList').innerHTML=learningRules.map((r,i)=>`<div class="rule"><span><strong>${r.title}</strong><small>${r.desc}</small></span><button class="btn secondary" onclick="approveRule(${i})">承認</button></div>`).join('')||'<p>承認待ちの学習候補はありません。</p>'}
-function renderLog(){$('log').innerHTML=logRows.map(r=>`<div class="log-row"><span>${r[0]}</span><strong>${r[1]}</strong></div>`).join('')}
-function addLog(text){const now=new Date();logRows.unshift([String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0'),text]);renderLog()}
-function selectTask(id){selectedId=id;renderTasks()}function completeSelected(){const t=baseTasks.find(x=>x.id===selectedId);if(!t)return;t.status='完了';addLog(`${t.title} を確認済みにしました`);renderTasks()}function requestInfo(){const t=baseTasks.find(x=>x.id===selectedId);if(!t)return;t.status='処理中';addLog(`${t.title} を担当者確認に回しました`);renderTasks()}function rejectDraft(){const t=baseTasks.find(x=>x.id===selectedId);if(!t)return;t.status='差戻し';addLog(`${t.title} を差戻しました`);renderTasks()}
-function approveRule(i){const rule=learningRules[i];if(!rule)return;addLog(`社内ルール「${rule.title}」を承認しました`);learningRules.splice(i,1);renderRules();renderMetrics()}function changeRole(){$('headlineTitle').textContent=`${$('role').value}の今日の業務ボード`;$('headlineText').textContent='AIが整理した下書きと不足情報だけを確認します。判断が必要なものは人間が止めます。';renderTasks()}
-function showSection(id){['board','import','learning','audit'].forEach(x=>$(x).classList.toggle('hidden',x!==id));document.querySelectorAll('.navbtn').forEach(b=>b.classList.toggle('active',b.dataset.section===id))}
-function loadSample(){baseTasks.forEach((t,i)=>t.status=['確認待ち','承認待ち','確認待ち','差戻し','処理中','承認待ち'][i]);selectedId=1;addLog('今日のサンプル業務を再読込しました');showSection('board');renderTasks()}
-$('file').addEventListener('change',async event=>{const file=event.target.files[0];if(!file){$('fileNote').textContent='未選択。選択すると先頭行だけをブラウザ内で確認します。';$('detected').innerHTML='';return}const text=await file.text();const first=(text.split(/\r?\n/).find(Boolean)||'').replace(/^\uFEFF/,'');const headers=first.split(',').map(s=>s.trim().replace(/^"|"$/g,'')).filter(Boolean);$('fileNote').textContent=`${file.name}: ${headers.length}列を検出しました`;$('detected').innerHTML=headers.slice(0,12).map(h=>`<span>${h}</span>`).join('');addLog(`${file.name} の列をブラウザ内で確認しました`)});
-renderTasks();renderRules();renderLog();
+let flow=[];let selectedId=null;let rules=[];let logs=[];
+function uid(){return 's'+Math.random().toString(36).slice(2,8)}
+function addLog(text){const now=new Date();logs.unshift({time:String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0'),text});renderLog()}
+function groupedTypes(){return stepTypes.reduce((acc,item)=>{(acc[item.group]??=[]).push(item);return acc},{})}
+function renderPalette(){const groups=groupedTypes();$('paletteList').innerHTML=Object.entries(groups).map(([group,items])=>`<div class="palette-group"><h3>${group}</h3>${items.map(item=>`<button class="tool" draggable="true" ondragstart="dragNew(event,'${item.type}')" onclick="addStep('${item.type}')"><span class="tool-icon" style="background:${item.color}">${item.icon}</span><span><strong>${item.type}</strong><small>${item.desc}</small></span><span class="tool-add">＋</span></button>`).join('')}</div>`).join('')}
+function typeInfo(type){return stepTypes.find(item=>item.type===type)||stepTypes[0]}
+function addStep(type,index=flow.length){const info=typeInfo(type);const step={id:uid(),type,owner:info.group,folder:info.folder,watch:'新規ファイル/更新ファイル',memo:''};flow.splice(index,0,step);selectedId=step.id;save();addLog(`${type} をフローに追加`);renderAll()}
+function removeStep(id){const step=flow.find(item=>item.id===id);flow=flow.filter(item=>item.id!==id);selectedId=flow[0]?.id??null;save();addLog(`${step?.type??'要素'} を削除`);renderAll()}
+function moveStep(id,delta){const index=flow.findIndex(item=>item.id===id);const next=index+delta;if(index<0||next<0||next>=flow.length)return;const [item]=flow.splice(index,1);flow.splice(next,0,item);selectedId=id;save();renderAll()}
+function dragNew(event,type){event.dataTransfer.setData('step-type',type)}
+function dragExisting(event,id){event.dataTransfer.setData('step-id',id)}
+function allowDrop(event){event.preventDefault()}
+function dropOnCanvas(event){event.preventDefault();const type=event.dataTransfer.getData('step-type');const id=event.dataTransfer.getData('step-id');if(type){addStep(type);return}if(id){const index=flow.findIndex(item=>item.id===id);if(index>=0){const [item]=flow.splice(index,1);flow.push(item);selectedId=id;save();renderAll()}}}
+function dropOnStep(event,targetId){event.preventDefault();event.stopPropagation();const type=event.dataTransfer.getData('step-type');const id=event.dataTransfer.getData('step-id');const targetIndex=flow.findIndex(item=>item.id===targetId);if(type){addStep(type,targetIndex);return}if(id&&id!==targetId){const from=flow.findIndex(item=>item.id===id);if(from<0||targetIndex<0)return;const [item]=flow.splice(from,1);const insertAt=flow.findIndex(step=>step.id===targetId);flow.splice(insertAt,0,item);selectedId=id;save();renderAll()}}
+function relationConfidence(left,right){let score=52;const pair=`${left.type}>${right.type}`;if(['見積>受注','受注>発注','受注>在庫確認','発注>納品','納品>請求','請求>入金','承認>請求','顧客連絡>見積'].includes(pair))score+=30;const leftRoot=left.folder.split('\\\\').slice(0,3).join('\\\\');const rightRoot=right.folder.split('\\\\').slice(0,3).join('\\\\');if(leftRoot&&leftRoot===rightRoot)score+=10;if(left.folder&&right.folder)score+=8;return Math.min(score,96)}
+function relationLabel(left,right){return `${left.type}→${right.type}`}
+function generateProposals(){const proposals=[];for(let i=0;i<flow.length-1;i++){const left=flow[i],right=flow[i+1];const confidence=relationConfidence(left,right);let action=`${left.folder} の新規/更新を監視し、${right.folder} へ確認済みデータを渡す`;if(left.type==='見積'&&right.type==='受注')action='見積番号と顧客名で突合し、受注フォルダへ案件フォルダを自動作成する';if(left.type==='受注'&&right.type==='発注')action='受注行から仕入先別の発注下書きCSVを作成し、承認待ちに置く';if(left.type==='受注'&&right.type==='在庫確認')action='受注数と在庫表を照合し、欠品見込みだけ確認タスク化する';if(left.type==='発注'&&right.type==='納品')action='発注回答と納品予定を突合し、遅延リスクを表示する';if(left.type==='納品'&&right.type==='請求')action='納品済みデータから請求書下書きを作成し、金額差異を止める';if(left.type==='請求'&&right.type==='入金')action='請求一覧と入金明細を照合し、未入金だけ経理担当へ戻す';proposals.push({id:`p${i}`,from:left.type,to:right.type,label:relationLabel(left,right),confidence,action,trigger:`${left.type}フォルダにファイル追加`,output:`${right.type}フォルダへ下書き/確認CSV`})}return proposals.sort((a,b)=>b.confidence-a.confidence)}
+function renderFlow(){if(!flow.length){$('flowTrack').innerHTML='<div class="empty">左の業務要素をここへドラッグしてください。<br>例: 見積 → 受注 → 在庫確認 → 発注 → 納品 → 請求</div>';return}$('flowTrack').innerHTML=flow.map((step,index)=>{const info=typeInfo(step.type);const node=`<button class="node ${step.id===selectedId?'active':''}" draggable="true" ondragstart="dragExisting(event,'${step.id}')" ondragover="allowDrop(event)" ondrop="dropOnStep(event,'${step.id}')" onclick="selectStep('${step.id}')"><div class="node-head"><span class="tool-icon" style="background:${info.color}">${info.icon}</span><span><h3>${step.type}</h3><small>${step.owner} / ${step.watch}</small></span></div><div class="folder">${step.folder||'フォルダ未指定'}</div><div class="node-actions"><span class="mini" onclick="event.stopPropagation();moveStep('${step.id}',-1)">←</span><span class="mini" onclick="event.stopPropagation();moveStep('${step.id}',1)">→</span><span class="mini" onclick="event.stopPropagation();removeStep('${step.id}')">削除</span></div></button>`;if(index===flow.length-1)return node;const confidence=relationConfidence(step,flow[index+1]);return node+`<div class="connector"><div class="connector-line"></div><div class="confidence">AI ${confidence}%</div></div>`}).join('')}
+function renderInspector(){const step=flow.find(item=>item.id===selectedId);if(!step){$('inspector').innerHTML='<h2>要素設定</h2><p>フロー要素を選択すると、フォルダと監視条件を設定できます。</p>';return}$('inspector').innerHTML=`<h2>${step.type} の設定</h2><p>この工程でAIが監視するフォルダと、次工程へ渡す条件を指定します。</p><label class="field"><span>担当領域</span><select onchange="updateStep('owner',this.value)"><option ${step.owner==='営業'?'selected':''}>営業</option><option ${step.owner==='調達'?'selected':''}>調達</option><option ${step.owner==='物流'?'selected':''}>物流</option><option ${step.owner==='経理'?'selected':''}>経理</option><option ${step.owner==='管理'?'selected':''}>管理</option><option ${step.owner==='連絡'?'selected':''}>連絡</option></select></label><label class="field"><span>監視フォルダ</span><input value="${escapeHtml(step.folder)}" oninput="updateStep('folder',this.value)" placeholder="例: \\\\共有\\\\営業\\\\02_受注"></label><label class="field"><span>AIが見るイベント</span><select onchange="updateStep('watch',this.value)"><option ${step.watch==='新規ファイル/更新ファイル'?'selected':''}>新規ファイル/更新ファイル</option><option ${step.watch==='承認済みファイルのみ'?'selected':''}>承認済みファイルのみ</option><option ${step.watch==='CSV出力のみ'?'selected':''}>CSV出力のみ</option><option ${step.watch==='差戻し履歴のみ'?'selected':''}>差戻し履歴のみ</option></select></label><label class="field"><span>現場メモ</span><textarea oninput="updateStep('memo',this.value)" placeholder="この工程の例外や社内ルール">${escapeHtml(step.memo)}</textarea></label><div class="notice" style="margin-top:12px">ここで指定したフォルダは、AIが関係判定を行うための業務上の置き場所です。正本ファイルは自動で上書きしません。</div>`}
+function renderProposals(){const proposals=generateProposals();$('proposals').innerHTML=proposals.length?proposals.map((item,index)=>`<article class="proposal"><div class="proposal-head"><strong>${item.label}</strong><span class="badge ${item.confidence>=85?'':'warn'}">${item.confidence}%</span></div><p>${item.action}</p><p><strong>トリガー:</strong> ${item.trigger}<br><strong>出力:</strong> ${item.output}</p><button class="btn secondary" onclick="implementProposal(${index})">試験実装を作成</button></article>`).join(''):'<p>2つ以上のフロー要素を配置すると、AIがフォルダ間の関連を判定します。</p>'}
+function renderRules(){if(!rules.length){$('rules').innerHTML='<p>まだ試験実装はありません。AI自動化提案から作成できます。</p>';return}$('rules').innerHTML=rules.map((rule,index)=>`<div class="rule"><span><strong>${rule.label}</strong><small>${rule.action}</small></span><button class="btn red" onclick="removeRule(${index})">停止</button></div>`).join('')}
+function renderLog(){$('log').innerHTML=logs.length?logs.map(row=>`<div class="log-row"><span>${row.time}</span><strong>${row.text}</strong></div>`).join(''):'<p>操作ログはここに表示されます。</p>'}
+function renderMetrics(){const proposals=generateProposals();$('mSteps').textContent=flow.length;$('mFolders').textContent=flow.filter(step=>step.folder).length;$('mLinks').textContent=proposals.length;$('mRules').textContent=rules.length}
+function renderAll(){renderFlow();renderInspector();renderProposals();renderRules();renderLog();renderMetrics()}
+function selectStep(id){selectedId=id;renderAll()}
+function updateStep(key,value){const step=flow.find(item=>item.id===selectedId);if(!step)return;step[key]=value;save();renderFlow();renderProposals();renderMetrics()}
+function implementProposal(index){const proposal=generateProposals()[index];if(!proposal)return;if(!rules.some(rule=>rule.label===proposal.label)){rules.push(proposal);addLog(`${proposal.label} の試験実装を作成`)}save();renderAll()}
+function implementTopProposal(){implementProposal(0)}
+function removeRule(index){const rule=rules[index];rules.splice(index,1);addLog(`${rule.label} の試験実装を停止`);save();renderAll()}
+function loadTemplate(){flow=[];['見積','受注','在庫確認','発注','納品','請求','入金'].forEach(type=>{const info=typeInfo(type);flow.push({id:uid(),type,owner:info.group,folder:info.folder,watch:'新規ファイル/更新ファイル',memo:''})});selectedId=flow[0].id;rules=[];save();addLog('標準フローを読み込み');renderAll()}
+function resetFlow(){flow=[];selectedId=null;rules=[];save();addLog('フローを初期化');renderAll()}
+function save(){localStorage.setItem('aiGlueFlowBuilder',JSON.stringify({flow,selectedId,rules,logs:logs.slice(0,30)}))}
+function restore(){try{const saved=JSON.parse(localStorage.getItem('aiGlueFlowBuilder')||'{}');if(Array.isArray(saved.flow)&&saved.flow.length){flow=saved.flow;selectedId=saved.selectedId||flow[0].id;rules=Array.isArray(saved.rules)?saved.rules:[];logs=Array.isArray(saved.logs)?saved.logs:[];return}}catch{}loadTemplate()}
+function escapeHtml(value){return String(value??'').replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]))}
+renderPalette();restore();renderAll();
 </script>
 </body>
 </html>
